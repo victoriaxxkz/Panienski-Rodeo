@@ -201,7 +201,7 @@ h2, h3 {
     .checkbox {
       margin-right: 10px;
     }
-    #saveSelection, #resetVotes {
+    #resetSelection, #resetVotes {
       margin-top: 10px;
       width: 100%;
       padding: 10px;
@@ -213,7 +213,7 @@ h2, h3 {
       font-weight: bold;
       transition: background 0.3s;
     }
-    #saveSelection:hover, #resetVotes:hover {
+    #resetSelection:hover, #resetVotes:hover {
       background: #ff3385;
     }
     #votesSummary {
@@ -1142,6 +1142,7 @@ label.product input.product-checkbox {
   <div id="totalPrice">Cena łączna: 0 PLN</div>
   <div id="totalPricePerPerson">Cena łączna na osobę: 0 PLN</div>
   <button id="saveSelection"> </button>
+  <button id="resetSelection">Resetuj głosy</button> 
 </div>
 
 <script>
@@ -1160,6 +1161,12 @@ document.addEventListener('DOMContentLoaded', () => {
       modalImg.src = img.src; // wklejamy kliknięte zdjęcie do modala
     });
   });
+// Obsługa przycisku "Resetuj głosy"
+document.getElementById('resetSelection').addEventListener('click', () => {
+  document.querySelectorAll('.product-checkbox').forEach(cb => cb.checked = false);
+  updateSummary();
+  showCustomMessage('Wszystkie głosy zostały zresetowane!');
+});
 
   modal.addEventListener('click', () => {
     modal.style.display = 'none';
