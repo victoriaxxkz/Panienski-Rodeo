@@ -2,12 +2,28 @@
 <html lang="pl">
 <head> 
   <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Rye&display=swap" rel="stylesheet">
+
+
+
+  
   <title>Głosowanie - Wieczór Panieński Cowgirl</title>
   <link rel="icon" type="image/jpeg" href="https://i.pinimg.com/736x/86/c1/17/86c1172421658d10d958a5feea1a81da.jpg">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
+
+body {
+  font-family: 'Comic Neue', 'Comic Sans MS', cursive, sans-serif;
+  margin: 20px;
+  position: relative;
+  background: linear-gradient(135deg, #ffe6f0, #ffd1dc);
+  background-attachment: fixed;
+  color: #d63384;
+  overflow-x: hidden;
+}
+
     h1 {
   font-family: 'Rye', cursive;
 }
@@ -308,6 +324,53 @@ label.product input.product-checkbox {
 
 }
 
+/* RESPONSYWNE ZDJĘCIA PRODUKTÓW */
+.product img {
+  width: 100%;
+  height: auto;
+  max-width: 120px;
+  display: block;
+  margin-top: 5px;
+  border: 2px solid #ff99cc;
+  border-radius: 15px;
+}
+
+/* WERSJA NA TELEFONY */
+@media (max-width: 768px) {
+  .product-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .product img {
+    max-width: 80px; /* Mniejsze zdjęcia na telefonie */
+    margin: 10px auto;
+  }
+
+  .product-details {
+    align-items: center;
+  }
+
+  /* Poprawka dla sekcji razem na telefonie */
+  .summary-box {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    width: auto;
+    padding: 15px;
+    background: #ffe6f0;
+    border: 2px dashed #d63384;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(255, 105, 180, 0.4);
+    z-index: 1000;
+  }
+
+  .summary-box h3, 
+  .summary-box div {
+    text-align: center;
+  }
+}
 
 
   </style>
@@ -401,7 +464,7 @@ label.product input.product-checkbox {
         </div>
         <div class="product-details">
           <div>Cena jednostkowa: 17,68 PLN</div>
-          <div>Cena na osobę: 2,94 PLN</div>
+          <div>Cena na osobę: 2,95 PLN</div>
           <div>Link do aukcji: <u><a href="https://www.temu.com/pl/8pcs-party-glasses-set-red-heart-shaped-and--glasses-for-weddings-bridal-showers-valentines-day-and--celebrations-plastic-bride-and-groom-festival-g-601099836297819.html?_oak_mp_inf=ENuk3rGn1ogBGiA4ZDEyOTRiYmNiNWQ0NWQ3ODJiZGFhMGI5YzNiMmVmYiDuov3d5zI%3D&top_gallery_url=https%3A%2F%2Fimg.kwcdn.com%2Fproduct%2Ffancy%2Feb890f3b-2f8a-418e-b111-ac45a88efeda.jpg&spec_gallery_id=5278349707&refer_page_sn=10009&refer_source=0&freesia_scene=2&_oak_freesia_scene=2&_oak_rec_ext_1=MTc2OA&_oak_gallery_order=1668072903%2C1080795344%2C2107064865%2C1114401281%2C765135346&search_key=panie%C5%84ski&refer_page_el_sn=200049&_x_sessn_id=yihkifu66c&refer_page_name=search_result&refer_page_id=10009_1745832885794_h7ht1qsqto" target="_blank" onclick="event.stopPropagation();"> Link (Temu)</u></a></div>
         </div>
       </div>
@@ -623,7 +686,7 @@ label.product input.product-checkbox {
   <input type="checkbox" class="product-checkbox" data-unit-price="8.90" data-person-price="1.48">
   <div class="product-content">
     <div class="product-info">
-      <strong> Girlanda </strong>
+      <strong> Girlanda nr. 4 </strong>
       <img src="https://img.kwcdn.com/product/fancy/8035d61f-a36f-48bf-ba3d-eb40bca90cc0.jpg?imageView2/2/w/1300/q/90/format/webp" alt="zdjecie">
     </div>
     <div class="product-details">
@@ -670,7 +733,7 @@ label.product input.product-checkbox {
   <input type="checkbox" class="product-checkbox" data-unit-price="8.43" data-person-price="1.41">
   <div class="product-content">
     <div class="product-info">
-      <strong> Serwetki 20 szt.</strong>
+      <strong> Serwetki 20 szt. nr. 1</strong>
       <img src="https://img.kwcdn.com/product/Fancyalgo/VirtualModelMatting/f6ad740d4a2c18a702492bffafeb5262.jpg?imageView2/2/w/1300/q/90/format/webp" alt="zdjecie">
     </div>
     <div class="product-details">
@@ -685,7 +748,7 @@ label.product input.product-checkbox {
   <input type="checkbox" class="product-checkbox" data-unit-price="7.53" data-person-price="1.26">
   <div class="product-content">
     <div class="product-info">
-      <strong> Serwetki 20 szt.  </strong>
+      <strong> Serwetki 20 szt. nr. 2 </strong>
       <img src="https://img.kwcdn.com/product/fancy/64fa9344-b7e9-488c-8829-382549a6ae05.jpg?imageView2/2/w/1300/q/90/format/webp" alt="zdjecie">
     </div>
     <div class="product-details">
@@ -700,7 +763,7 @@ label.product input.product-checkbox {
   <input type="checkbox" class="product-checkbox" data-unit-price="9.81" data-person-price="1.64">
   <div class="product-content">
     <div class="product-info">
-      <strong> Serwetki 20 szt  </strong>
+      <strong> Serwetki 20 szt  nr. 3 </strong>
       <img src="https://img.kwcdn.com/product/fancy/dbdaebca-66a7-4d65-b9f8-44f3a6303fb6.jpg?imageView2/2/w/1300/q/90/format/webp" alt="zdjecie">
     </div>
     <div class="product-details">
@@ -715,13 +778,28 @@ label.product input.product-checkbox {
   <input type="checkbox" class="product-checkbox" data-unit-price="3.65" data-person-price="0.61">
   <div class="product-content">
     <div class="product-info">
-      <strong> Dekoracje na wykałaczkach 12 szt. </strong>
+      <strong> Dekoracje na wykałaczkach 12 szt. nr. 1 </strong>
       <img src="https://img.kwcdn.com/product/fancy/cdf462b5-4121-4ce4-9fe8-479e0e993c8e.jpg?imageView2/2/w/1300/q/90/format/webp" alt="zdjecie">
     </div>
     <div class="product-details">
       <div>Cena jednostkowa: 3,65 PLN</div>
       <div>Cena na osobę: 0.61 PLN</div>
       <div>Link do aukcji: <u><a href="https://www.temu.com/pl/goods.html?_bg_fs=1&goods_id=601100421046683&_x_sessn_id=yihkifu66c&refer_page_name=wishlist&refer_page_id=16136_1745833672749_3itpksb9ib&refer_page_sn=16136" target="_blank" onclick="event.stopPropagation();"> Link (Temu) </u></a></div>
+    </div>
+  </div>
+</label>
+
+<label class="product">
+  <input type="checkbox" class="product-checkbox" data-unit-price="6.34" data-person-price="1.06">
+  <div class="product-content">
+    <div class="product-info">
+      <strong> Dekoracje na wykałaczkach ( można przykleić na nie twarz Matiego ) </strong>
+      <img src="https://img.kwcdn.com/product/fancy/ca18c174-c0d3-4a39-b7da-9810f56317c9.jpg?imageView2/2/w/1300/q/90/format/webp"zdjecie">
+    </div>
+    <div class="product-details">
+      <div>Cena jednostkowa: 6,34 PLN</div>
+      <div>Cena na osobę: 1,06 PLN</div>
+      <div>Link do aukcji: <u><a href="https://www.temu.com/pl/zestaw-24-sztuk-ozd%C3%B3b-na-babeczki-z-m%C4%99%C5%BCczyznami-ta%C5%84cz%C4%85cymi-weso%C5%82e-dekoracje-na-wiecz%C3%B3r-panie%C5%84ski-z-sylwetkami-mi%C4%99%C5%9Bniastych-m%C4%99%C5%BCczyzn-drewniane-patyczki-do-%C5%9Blub%C3%B3w-wieczory-panie%C5%84skie-i-uroczysto%C5%9Bci-akcesoria-na-wiecz%C3%B3r-panie%C5%84ski-temat-figur-mi%C4%99%C5%9Bniastych-trwa%C5%82e-wybieraki-na-przyj%C4%99cia-dekoracje-weselne-g-601100078006104.html?_oak_mp_inf=ENj%2B%2FqSo1ogBGiBmZmE0Nzk1YWZkNjE0ZTM1OGQyNTg2Zjg0OTc4ZDA3MyCesZjf5zI%3D&top_gallery_url=https%3A%2F%2Fimg.kwcdn.com%2Fproduct%2Ffancy%2Fca18c174-c0d3-4a39-b7da-9810f56317c9.jpg&spec_gallery_id=6312552338&refer_page_sn=10009&refer_source=0&freesia_scene=2&_oak_freesia_scene=2&_oak_rec_ext_1=NjM0&_oak_gallery_order=1043422821%2C27135963%2C424623979%2C1818954016%2C435387788&search_key=panie%C5%84ski%20wierzcho%C5%82ek%20ciasta&refer_page_el_sn=200049&refer_page_name=search_result&refer_page_id=10009_1745835396617_kixl8ok6q3&_x_sessn_id=apup8ft9rm" target="_blank" onclick="event.stopPropagation();"> Link (Temu) </u></a></div>
     </div>
   </div>
 </label>
@@ -757,7 +835,7 @@ label.product input.product-checkbox {
 </label>
 
 <label class="product">
-  <input type="checkbox" class="product-checkbox" data-unit-price="10,76" data-person-price="1.79">
+  <input type="checkbox" class="product-checkbox" data-unit-price="10.76" data-person-price="1.79">
   <div class="product-content">
     <div class="product-info">
       <strong> Plastikowe kieliszki do shotów, 30 szt. </strong>
@@ -771,8 +849,10 @@ label.product input.product-checkbox {
   </div>
 </label>
 
+
+
 <label class="product">
-  <input type="checkbox" class="product-checkbox" data-unit-price="5.89" data-person-price="0.91">
+  <input type="checkbox" class="product-checkbox" data-unit-price="5.89" data-person-price="0.98">
   <div class="product-content">
     <div class="product-info">
       <strong> Same kapelusze na alkohol, 10 szt.</strong>
@@ -780,7 +860,7 @@ label.product input.product-checkbox {
     </div>
     <div class="product-details">
       <div>Cena jednostkowa: 5,89 PLN</div>
-      <div>Cena na osobę: 0,91 PLN</div>
+      <div>Cena na osobę: 0,98 PLN</div>
       <div>Link do aukcji: <u><a href="https://www.temu.com/pl/10-mini-kask%C3%B3w-4-6-cm-akcesoria-do-dekoracji--dekoracje-dla-lalek-wierzchnice-ciast-dekoracje-butelek-diy-g-601099948324988.html?_oak_mp_inf=EPzwk%2Ben1ogBGiBmZmE0Nzk1YWZkNjE0ZTM1OGQyNTg2Zjg0OTc4ZDA3MyCesZjf5zI%3D&top_gallery_url=https%3A%2F%2Fimg.kwcdn.com%2Fproduct%2Ffancy%2Ff5f4cae0-0a38-4b68-863b-9722129b1392.jpg&spec_gallery_id=5616320293&refer_page_sn=10009&refer_source=0&freesia_scene=2&_oak_freesia_scene=2&_oak_rec_ext_1=NTg5&_oak_gallery_order=1264209945%2C1274492492%2C1819429807%2C1652153226%2C1401960421&search_key=panie%C5%84ski%20wierzcho%C5%82ek%20ciasta&refer_page_el_sn=200049&refer_page_name=search_result&refer_page_id=10009_1745835396617_kixl8ok6q3&_x_sessn_id=apup8ft9rm" target="_blank" onclick="event.stopPropagation();"> Link (Temu) </u></a></div>
     </div>
   </div>
@@ -816,31 +896,17 @@ label.product input.product-checkbox {
   </div>
 </label>
 
-<label class="product">
-  <input type="checkbox" class="product-checkbox" data-unit-price="6.34" data-person-price="1.06">
-  <div class="product-content">
-    <div class="product-info">
-      <strong> Dekoracje na wykałackaczh ( można przykleić na nie twarz Matiego ) </strong>
-      <img src="https://img.kwcdn.com/product/fancy/ca18c174-c0d3-4a39-b7da-9810f56317c9.jpg?imageView2/2/w/1300/q/90/format/webp"zdjecie">
-    </div>
-    <div class="product-details">
-      <div>Cena jednostkowa: 6,34 PLN</div>
-      <div>Cena na osobę: 1,06 PLN</div>
-      <div>Link do aukcji: <u><a href="https://www.temu.com/pl/zestaw-24-sztuk-ozd%C3%B3b-na-babeczki-z-m%C4%99%C5%BCczyznami-ta%C5%84cz%C4%85cymi-weso%C5%82e-dekoracje-na-wiecz%C3%B3r-panie%C5%84ski-z-sylwetkami-mi%C4%99%C5%9Bniastych-m%C4%99%C5%BCczyzn-drewniane-patyczki-do-%C5%9Blub%C3%B3w-wieczory-panie%C5%84skie-i-uroczysto%C5%9Bci-akcesoria-na-wiecz%C3%B3r-panie%C5%84ski-temat-figur-mi%C4%99%C5%9Bniastych-trwa%C5%82e-wybieraki-na-przyj%C4%99cia-dekoracje-weselne-g-601100078006104.html?_oak_mp_inf=ENj%2B%2FqSo1ogBGiBmZmE0Nzk1YWZkNjE0ZTM1OGQyNTg2Zjg0OTc4ZDA3MyCesZjf5zI%3D&top_gallery_url=https%3A%2F%2Fimg.kwcdn.com%2Fproduct%2Ffancy%2Fca18c174-c0d3-4a39-b7da-9810f56317c9.jpg&spec_gallery_id=6312552338&refer_page_sn=10009&refer_source=0&freesia_scene=2&_oak_freesia_scene=2&_oak_rec_ext_1=NjM0&_oak_gallery_order=1043422821%2C27135963%2C424623979%2C1818954016%2C435387788&search_key=panie%C5%84ski%20wierzcho%C5%82ek%20ciasta&refer_page_el_sn=200049&refer_page_name=search_result&refer_page_id=10009_1745835396617_kixl8ok6q3&_x_sessn_id=apup8ft9rm" target="_blank" onclick="event.stopPropagation();"> Link (Temu) </u></a></div>
-    </div>
-  </div>
-</label>
 
 <label class="product">
   <input type="checkbox" class="product-checkbox" data-unit-price="6.04" data-person-price="1">
   <div class="product-content">
     <div class="product-info">
-      <strong> Słomki 12 szt. </strong>
+      <strong> Słomki 12 szt. nr 1</strong>
       <img src="https://img.kwcdn.com/product/fancy/85b9d395-3115-4b70-97ea-cc6f981e3c33.jpg?imageView2/2/w/1300/q/90/format/webp" alt="zdjecie">
     </div>
     <div class="product-details">
       <div>Cena jednostkowa: 6.04 PLN</div>
-      <div>Cena na osobę: 1.00 PLN</div>
+      <div>Cena na osobę: 1.01 PLN</div>
       <div>Link do aukcji: <u><a href="https://www.temu.com/pl/12-sztuk-s%C5%82omek--w-kolorze-r%C3%B3%C5%BCowego-z%C5%82ota-z-naklejkami-idealne-na-wieczory-panie%C5%84skie-i-imprezy-wykonane-z-ekologicznego-papieru-g-601099594136196.html?_oak_mp_inf=EIT1ob6m1ogBGiA2NzMzNmI5OTRjNWI0ODg2OTg5ZTZhYTFjNTY2MzFjYyC3g4Hg5zI%3D&top_gallery_url=https%3A%2F%2Fimg.kwcdn.com%2Fproduct%2Ffancy%2F85b9d395-3115-4b70-97ea-cc6f981e3c33.jpg&spec_gallery_id=4196974486&refer_page_sn=10009&refer_source=0&freesia_scene=2&_oak_freesia_scene=2&_oak_rec_ext_1=NjA0&_oak_gallery_order=78577282%2C1178598534%2C2043984760%2C434534955%2C2081483158&search_key=s%C5%82omki&refer_page_el_sn=200049&_x_sessn_id=dfk1lgxdlx&refer_page_name=search_result&refer_page_id=10009_1745837141604_xh18ww7apf" target="_blank" onclick="event.stopPropagation();"> Link (Temu) </u></a></div>
     </div>
   </div>
@@ -850,7 +916,7 @@ label.product input.product-checkbox {
   <input type="checkbox" class="product-checkbox" data-unit-price="3.99" data-person-price="0.67">
   <div class="product-content">
     <div class="product-info">
-      <strong> Słomki </strong>
+      <strong> Słomki, 25 szt.  nr. 2</strong>
       <img src="https://img.kwcdn.com/product/fancy/64c150ed-aba2-4974-9bc8-ea88819af283.jpg?imageView2/2/w/1300/q/90/format/webp" alt="zdjecie">
     </div>
     <div class="product-details">
@@ -863,30 +929,30 @@ label.product input.product-checkbox {
 
 
 <label class="product">
-  <input type="checkbox" class="product-checkbox" data-unit-price="5.81" data-person-price="0.96">
+  <input type="checkbox" class="product-checkbox" data-unit-price="5.81" data-person-price="0.97">
   <div class="product-content">
     <div class="product-info">
-      <strong> Obrus  </strong>
+      <strong> Obrus nr. 1  </strong>
       <img src="https://img.kwcdn.com/product/fancy/747fb1f4-adf6-430d-9533-0258584a244c.jpg?imageView2/2/w/1300/q/90/format/webp" alt="zdjecie">
     </div>
     <div class="product-details">
       <div>Cena jednostkowa: 5,81 PLN</div>
-      <div>Cena na osobę: 0,96 PLN</div>
+      <div>Cena na osobę: 0,97 PLN</div>
       <div>Link do aukcji: <u><a href="https://www.temu.com/pl/jednorazowy-plastikowy-obrus-w-kolorze-jasnoniebieskim-prostok%C4%85tny-137-16-cm-x-182-88-cm-na-przyj%C4%99cia-wesela-urodziny-i-dekoracje-%C5%9Bwi%C4%85teczne-idealny-do-domu--wydarzenia-g%C5%82adka-tekstura-wszechstronny-obrus-g-601100096337231.html?_oak_mp_inf=EM%2Fq3a2o1ogBGiBmMTIzNzIwMWNjMGM0MjBiYmFjMGJjODI3ZmYxNmMzYSCS7qDg5zI%3D&top_gallery_url=https%3A%2F%2Fimg.kwcdn.com%2Fproduct%2Ffancy%2F747fb1f4-adf6-430d-9533-0258584a244c.jpg&spec_gallery_id=6331730779&refer_page_sn=10009&refer_source=0&freesia_scene=2&_oak_freesia_scene=2&_oak_rec_ext_1=NTgx&_oak_gallery_order=843747594%2C765268673%2C295622935%2C483518150%2C1360863902&search_key=obrus&refer_page_el_sn=200049&_x_sessn_id=apup8ft9rm&refer_page_name=search_result&refer_page_id=10009_1745837663325_3h6f0xehlw" target="_blank" onclick="event.stopPropagation();"> Link (Temu) </u></a></div>
     </div>
   </div>
 </label>
 
 <label class="product">
-  <input type="checkbox" class="product-checkbox" data-unit-price="8" data-person-price="1.34">
+  <input type="checkbox" class="product-checkbox" data-unit-price="8" data-person-price="1.33">
   <div class="product-content">
     <div class="product-info">
-      <strong> Obrus  </strong>
+      <strong> Obrus nr. 2 </strong>
       <img src="https://img.kwcdn.com/product/Fancyalgo/VirtualModelMatting/0ad99afea3e1601b687ebd19fd712f87.jpg?imageView2/2/w/1300/q/90/format/webp" alt="zdjecie">
     </div>
     <div class="product-details">
       <div>Cena jednostkowa: 8,00 PLN</div>
-      <div>Cena na osobę: 1,34 PLN</div>
+      <div>Cena na osobę: 1,33 PLN</div>
       <div>Link do aukcji: <u><a href="https://www.temu.com/pl/1-szt-obrusy--lets-go-girls-party-dekoracje-gor%C4%85cy-r%C3%B3%C5%BCowy-plastikowy-prostok%C4%85tny-obrus-na-st%C3%B3%C5%82-r%C3%B3%C5%BCowy-nadruk-krowy-artyku%C5%82y-na-wiecz%C3%B3r-panie%C5%84ski-dekoracja-sto%C5%82u-g-601099529806337.html?_oak_mp_inf=EIHEy5%2Bm1ogBGhZnb29kc19jcDJ2YmdfcmVjb21tZW5kIJSX%2Ft%2FnMg%3D%3D&top_gallery_url=https%3A%2F%2Fimg.kwcdn.com%2Fproduct%2FFancyalgo%2FVirtualModelMatting%2F6d484159f5e8671f4c07422e6d46304b.jpg&spec_gallery_id=601099529806337&refer_page_sn=10032&refer_source=10016&freesia_scene=11&_oak_freesia_scene=11&_oak_rec_ext_1=ODAw&_oak_gallery_order=1528986366%2C1753693947%2C1212743411%2C947140425%2C1048082489&refer_page_el_sn=200444&_x_sessn_id=apup8ft9rm&refer_page_name=goods&refer_page_id=10032_1745837092660_u919mpuj80" target="_blank" onclick="event.stopPropagation();"> Link (Temu) </u></a></div>
     </div>
   </div>
@@ -896,7 +962,7 @@ label.product input.product-checkbox {
   <input type="checkbox" class="product-checkbox" data-unit-price="11.81" data-person-price="1.97">
   <div class="product-content">
     <div class="product-info">
-      <strong> Obrus </strong>
+      <strong> Obrus mr. 3</strong>
       <img src="https://img.kwcdn.com/product/fancy/933044b2-0666-4184-b25b-cdd22f296f1c.jpg?imageView2/2/w/1300/q/90/format/webp" alt="zdjecie">
     </div>
     <div class="product-details">
@@ -913,7 +979,7 @@ label.product input.product-checkbox {
   <input type="checkbox" class="product-checkbox" data-unit-price="15.84" data-person-price="2.64">
   <div class="product-content">
     <div class="product-info">
-      <strong> Szarfy  </strong>
+      <strong> Szarfy  nr. 1</strong>
       <img src="https://img.kwcdn.com/product/open/2024-04-01/1711964130803-4a9c1fcc52724ae98e44bc53a4e499a4-goods.jpeg?imageView2/2/w/1300/q/90/format/webp" alt="zdjecie">
     </div>
     <div class="product-details">
@@ -928,7 +994,7 @@ label.product input.product-checkbox {
   <input type="checkbox" class="product-checkbox" data-unit-price="26.22" data-person-price="4.37">
   <div class="product-content">
     <div class="product-info">
-      <strong> Szarfy </strong>
+      <strong> Szarfy nr. 2</strong>
       <img src="https://img.kwcdn.com/product/fancy/acd8c234-c823-4ce3-9625-9f3467d870e6.jpg?imageView2/2/w/1300/q/90/format/webp" alt="zdjecie">
     </div>
     <div class="product-details">
@@ -940,7 +1006,7 @@ label.product input.product-checkbox {
 </label>
 
 <label class="product">
-  <input type="checkbox" class="product-checkbox" data-unit-price="4.59" data-person-price="0.75">
+  <input type="checkbox" class="product-checkbox" data-unit-price="4.59" data-person-price="0.77">
   <div class="product-content">
     <div class="product-info">
       <strong> Tatuaże zmywalne </strong>
@@ -948,7 +1014,7 @@ label.product input.product-checkbox {
     </div>
     <div class="product-details">
       <div>Cena jednostkowa: 4,59 PLN</div>
-      <div>Cena na osobę: 0,75 PLN</div>
+      <div>Cena na osobę: 0,77 PLN</div>
       <div>Link do aukcji: <u><a href="https://www.temu.com/pl/chic-bachelorette-party-temporary-tattoos-realistic-70s-western-cowboy-heart-hat-designs--birthday-celebrations-gifts-g-601099633772812.html?_oak_mp_inf=EIySldGm1ogBGiA0MWY4YmMzYWVmODY0ZjYwOGQ3NmZjYjZlMTc3ZWUzYyC4mt7f5zI%3D&top_gallery_url=https%3A%2F%2Fimg.kwcdn.com%2Fproduct%2Ffancy%2F2447e981-b8c1-4123-a34c-d45e6156fa3a.jpg&spec_gallery_id=4329883374&refer_page_sn=10009&refer_source=0&freesia_scene=2&_oak_freesia_scene=2&_oak_rec_ext_1=NDU5&_oak_gallery_order=948422948%2C23362899%2C584603124%2C2091848641%2C1509830902&search_key=kowbojska%20impreza&refer_page_el_sn=200049&refer_page_name=search_result&refer_page_id=10009_1745835298071_lo17ng2dfy&_x_sessn_id=apup8ft9rm" target="_blank" onclick="event.stopPropagation();"> Link (Temu) </u></a></div>
     </div>
   </div>
@@ -959,7 +1025,7 @@ label.product input.product-checkbox {
   <input type="checkbox" class="product-checkbox" data-unit-price="171.15" data-person-price="28.53">
   <div class="product-content">
     <div class="product-info">
-      <strong> Koszuki Rodeo, 7 szt.  </strong>
+      <strong> Koszuki Rodeo, 7 szt. nr. 1 </strong>
       <img src="https://img.kwcdn.com/product/fancy/bb16b9ec-8653-4a90-8fa1-f2335bac8fb3.jpg?imageView2/2/w/1300/q/90/format/webp" alt="zdjecie">
     </div>
     <div class="product-details">
@@ -974,7 +1040,7 @@ label.product input.product-checkbox {
   <input type="checkbox" class="product-checkbox" data-unit-price="228.76" data-person-price="38.13">
   <div class="product-content">
     <div class="product-info">
-      <strong> Koszuki "Let's go Girls", 7 szt.  </strong>
+      <strong> Koszuki "Let's go Girls", 7 szt.  nr. 2</strong>
       <img src="https://img.kwcdn.com/product/open/b479e62c88c0439bbc27cc1b1f2197f2-goods.jpeg?imageView2/2/w/1300/q/90/format/webp" alt="zdjecie">
     </div>
     <div class="product-details">
@@ -989,7 +1055,7 @@ label.product input.product-checkbox {
   <input type="checkbox" class="product-checkbox" data-unit-price="142.8" data-person-price="23.80">
   <div class="product-content">
     <div class="product-info">
-      <strong> Koszulka Pink Pony Club, 7 szt.  </strong>
+      <strong> Koszulka Pink Pony Club, 7 szt.  nr. 3 </strong>
       <img src="https://img.kwcdn.com/product/fancy/d34ece20-b608-4ebe-b713-5d52681e8ec9.jpg?imageView2/2/w/800/q/70/format/webp" alt="zdjecie">
     </div>
     <div class="product-details">
@@ -1033,6 +1099,22 @@ label.product input.product-checkbox {
   </div>
 </label>
 
+<label class="product">
+  <input type="checkbox" class="product-checkbox" data-unit-price="15.86" data-person-price="2.64">
+  <div class="product-content">
+    <div class="product-info">
+      <strong> Gra "Szukanie pierścionków" </strong>
+      <img src="https://img.kwcdn.com/product/fancy/a00c8d4e-d672-4f87-8b96-331a39124bab.jpg?imageView2/2/w/1300/q/90/format/webp" alt="zdjecie">
+    </div>
+    <div class="product-details">
+      <div>Cena jednostkowa: 15,86 PLN</div>
+      <div>Cena na osobę: 2,64 PLN</div>
+      <div>Link do aukcji: <u><a href="https://www.temu.com/pl/51pcs-ring-hunt-game-set-for-bridal-showers--50-rings-sign---wedding-decorations-g-601099657243389.html?_oak_mp_inf=EP3Vrdym1ogBGhZnb29kc18wbGE1ZnVfcmVjb21tZW5kIPr5yu3nMg%3D%3D&top_gallery_url=https%3A%2F%2Fimg.kwcdn.com%2Fproduct%2Ffancy%2Fa00c8d4e-d672-4f87-8b96-331a39124bab.jpg&spec_gallery_id=4433970287&refer_page_sn=10032&refer_source=10016&freesia_scene=11&_oak_freesia_scene=11&_oak_rec_ext_1=MTU4Ng&_oak_gallery_order=574329355%2C2137221621%2C959978474%2C1110463029%2C1630524479&refer_page_el_sn=200444&_x_sessn_id=dfk1lgxdlx&refer_page_name=goods&refer_page_id=10032_1745865610975_j1xyeu8n8n" target="_blank" onclick="event.stopPropagation();"> Link (Temu) </u></a></div>
+    </div>
+  </div>
+</label>
+
+
 
   </div>
 </details>
@@ -1041,33 +1123,48 @@ label.product input.product-checkbox {
   <h3>Razem</h3>
   <div id="totalPrice">Cena łączna: 0 PLN</div>
   <div id="totalPricePerPerson">Cena łączna na osobę: 0 PLN</div>
-  <button id="saveSelection">Zapisz wybór</button>
-  <button id="resetVotes">Resetuj głosy</button>
+  <button id="saveSelection"> </button>
 </div>
 
-<h2 id="votesSummary">Podsumowanie głosów</h2>
-<div id="votesList"></div>
-
 <script>
-  const googleScriptURL = 'https://script.google.com/macros/s/AKfycbxSNuhw0D5BRaW-fX2l5stVniLrGh-v0vHV5w_zjpIb_UDKRp6vWSgGY-we_n0IO88qIg/exec'; 
-  
-  // ➔ Najpierw łapiemy elementy
+
+document.addEventListener('DOMContentLoaded', () => {
+  const modal = document.getElementById('imageModal');
+  const modalImg = document.getElementById('modalImage');
+
+  document.querySelectorAll('.product-info img').forEach(img => {
+    img.style.cursor = 'zoom-in'; // dodajemy kursor "lupę" przy obrazkach
+
+    img.addEventListener('click', () => {
+      modal.style.display = 'flex';
+      modal.style.justifyContent = 'center';
+      modal.style.alignItems = 'center';
+      modalImg.src = img.src; // wklejamy kliknięte zdjęcie do modala
+    });
+  });
+
+  modal.addEventListener('click', () => {
+    modal.style.display = 'none';
+    modalImg.src = '';
+  });
+});
+
+  const googleScriptURL = 'https://script.google.com/macros/s/AKfycbyMf-KeUssHKr5TwaQYWoDoyMhh5H2Pqriex_7QZWEbkm752dp2LjOsl_sfCYk7jEKq/exec'; 
+
   const totalPriceEl = document.getElementById('totalPrice');
   const totalPricePerPersonEl = document.getElementById('totalPricePerPerson');
-  
-  // Funkcja: aktualizacja cen
+
   function updateSummary() {
     let total = 0;
     document.querySelectorAll('.product-checkbox:checked').forEach(checkbox => {
       const price = parseFloat(checkbox.dataset.unitPrice) || 0;
       total += price;
     });
-  
+
     totalPriceEl.textContent = `Cena łączna: ${total.toFixed(2)} PLN`;
     totalPricePerPersonEl.textContent = `Cena łączna na osobę: ${(total / 6).toFixed(2)} PLN`;
   }
-  
-  // Funkcja: pokazanie komunikatu
+
   function showCustomMessage(message) {
     const customMsg = document.createElement('div');
     customMsg.textContent = message;
@@ -1083,72 +1180,42 @@ label.product input.product-checkbox {
     customMsg.style.boxShadow = '0 4px 10px rgba(255, 105, 180, 0.6)';
     customMsg.style.animation = 'fadeInOut 3s forwards';
     document.body.appendChild(customMsg);
-  
-    setTimeout(() => {
-      customMsg.remove();
-    }, 3000);
+    setTimeout(() => { customMsg.remove(); }, 3000);
   }
-  
-  // Animacja fade-in/fade-out
-  const style = document.createElement('style');
-  style.innerHTML = `
-    @keyframes fadeInOut {
-      0% { opacity: 0; }
-      10% { opacity: 1; }
-      90% { opacity: 1; }
-      100% { opacity: 0; }
-    }
-  `;
-  document.head.appendChild(style);
-  
-  // Obsługa kliknięcia "Zapisz wybór"
+
   document.getElementById('saveSelection').addEventListener('click', () => {
     const selectedProducts = [];
     document.querySelectorAll('.product-checkbox:checked').forEach(checkbox => {
-      const productDiv = checkbox.closest('.product');
-      const productName = productDiv.querySelector('strong')?.textContent.trim() || 'Nieznany produkt';
-      selectedProducts.push(productName);
+      const label = checkbox.parentElement.textContent.trim();
+      selectedProducts.push(label);
     });
-  
+
     if (selectedProducts.length === 0) {
       alert('Wybierz coś przed zapisaniem!');
       return;
     }
-  
-    // Wyślij WSZYSTKIE produkty i dopiero potem wykonaj akcję
-    Promise.all(
-      selectedProducts.map(product => {
-        return fetch(googleScriptURL, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ product: product })
-        });
-      })
-    )
-    .then(() => {
+
+    fetch(googleScriptURL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ products: selectedProducts })
+    })
+    .then(response => response.text())
+    .then(data => {
+      console.log('Odpowiedź serwera:', data);
       showCustomMessage('Twój wybór został zapisany! 🎉');
       document.querySelectorAll('.product-checkbox').forEach(cb => cb.checked = false);
-      updateSummary(); // poprawna aktualizacja ceny po zapisie
+      updateSummary();
     })
-    .catch(error => {
-      console.error('Błąd podczas zapisu:', error);
-      alert('Wystąpił błąd podczas zapisu wyboru!');
-    });
   });
-  
-  // Start: kiedy strona się załaduje
+
   window.addEventListener('load', () => {
     document.querySelectorAll('.product-checkbox').forEach(checkbox => {
       checkbox.addEventListener('change', updateSummary);
     });
     updateSummary();
   });
-  </script>
-  
-
-
+</script>
 
 </body>
 </html>
