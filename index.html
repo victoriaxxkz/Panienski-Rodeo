@@ -1,6 +1,29 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-analytics.js";
+    import { getDatabase, ref, push, set, onValue } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-database.js";
+  
+    const firebaseConfig = {
+      apiKey: "AIzaSyA2xbcv3Kr3pWONZ_LZNBH4ggQYklGep2c",
+      authDomain: "weekendpanienskirodeo.firebaseapp.com",
+      projectId: "weekendpanienskirodeo",
+      storageBucket: "weekendpanienskirodeo.appspot.com", <!-- poprawiłam tutaj też literówkę! -->
+      messagingSenderId: "969474522755",
+      appId: "1:969474522755:web:10a39837d092a7bc7a65b6",
+      measurementId: "G-HP72EB5JTZ"
+    };
+  
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+  
+    const db = getDatabase(app); // <- poprawnie pobrana baza danych
+ 
+</script>
+  
   <meta charset="UTF-8">
   <link href="https://fonts.googleapis.com/css2?family=Rye&display=swap" rel="stylesheet">
   <title>Głosowanie - Wieczór Panieński Cowgirl</title>
@@ -1116,16 +1139,20 @@ document.getElementById('imageModal').addEventListener('click', function() {
     }
   
     document.getElementById('saveSelection').addEventListener('click', function() {
-      const votes = {};
-      document.querySelectorAll('.product-checkbox:checked').forEach(checkbox => {
-        const productName = checkbox.closest('.product').querySelector('strong')?.textContent.trim() || 'Nieznany produkt';
-        votes[productName] = (votes[productName] || 0) + 1;
-      });
-      renderVotes(votes);
-      document.querySelectorAll('.product-checkbox').forEach(cb => cb.checked = false);
-      updateSummary();
-      alert('Twój wybór został zapisany!');
-    });
+  const votes = {};
+  document.querySelectorAll('.product-checkbox:checked').forEach(checkbox => {
+    const productName = checkbox.closest('.product').querySelector('strong')?.textContent.trim() || 'Nieznany produkt';
+    votes[productName] = true; // zaznaczenie jako głos
+  });
+
+  const newVoteRef = db.ref('votes').push(); // Tworzy nowe unikalne głosowanie
+  newVoteRef.set(votes).then(() => {
+    alert('Twój wybór został zapisany!');
+    document.querySelectorAll('.product-checkbox').forEach(cb => cb.checked = false);
+    updateSummary(); 
+  });
+});
+
   
     document.getElementById('resetVotes').addEventListener('click', function() {
       if (confirm('Czy na pewno chcesz zresetować wszystkie głosy?')) {
@@ -1139,6 +1166,39 @@ document.getElementById('imageModal').addEventListener('click', function() {
       attachCheckboxListeners();
       updateSummary();
     });
+
+    function loadVotes() {
+  db.ref('votes').on('value', (snapshot) => {
+    const allVotes = snapshot.val() || {};
+    const voteCounts = {};
+
+    Object.values(allVotes).forEach(vote => {
+      for (let product in vote) {
+        voteCounts[product] = (voteCounts[product] || 0) + 1;
+      }
+    });
+
+    renderVotes(voteCounts);
+  });
+}
+
+function renderVotes(votes) {
+  const votesList = document.getElementById('votesList');
+  votesList.innerHTML = '';
+  for (let product in votes) {
+    const div = document.createElement('div');
+    div.textContent = `${product}: ${votes[product]} głosów`;
+    votesList.appendChild(div);
+  }
+}
+
+// Uruchom wczytywanie po załadowaniu strony
+window.addEventListener('load', () => {
+  attachCheckboxListeners();
+  loadVotes();
+  updateSummary();
+});
+
   </script>
 
 </body>
