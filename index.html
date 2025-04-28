@@ -1117,15 +1117,20 @@ document.getElementById('saveSelection').addEventListener('click', () => {
 
   // Wyślij każdy produkt osobno do Google Sheets
   selectedProducts.forEach(product => {
-    fetch(googleScriptURL, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ product: product })
-    });
-  });
+fetch(googleScriptURL, {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({ product: product })
+})
+.then(response => response.text())
+.then(data => {
+  console.log('Odpowiedź serwera:', data);
+})
+.catch(error => {
+  console.error('Błąd:', error);
+});
 
   showCustomMessage('Twój wybór został zapisany! 🎉');
   document.querySelectorAll('.product-checkbox').forEach(cb => cb.checked = false);
