@@ -314,31 +314,7 @@ label.product input.product-checkbox {
 </head>
 <body>
 
-  <script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
-
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  const firebaseConfig = {
-    apiKey: "AIzaSyA2xbcv3Kr3pWONZ_LZNBH4ggQYklGep2c",
-    authDomain: "weekendpanienskirodeo.firebaseapp.com",
-    databaseURL: "https://weekendpanienskirodeo-default-rtdb.europe-west1.firebasedatabase.app",
-    projectId: "weekendpanienskirodeo",
-    storageBucket: "weekendpanienskirodeo.firebasestorage.app",
-    messagingSenderId: "969474522755",
-    appId: "1:969474522755:web:10a39837d092a7bc7a65b6",
-    measurementId: "G-HP72EB5JTZ"
-  };
-
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-</script>
-  
+ 
 <!-- Modal powiększenia zdjęcia -->
 <div id="imageModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); justify-content:center; align-items:center; z-index:9999;">
   <img id="modalImage" src="" style="max-width:90%; max-height:90%; border-radius:10px; box-shadow:0 0 15px white;"/>
@@ -1073,7 +1049,6 @@ label.product input.product-checkbox {
 
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-analytics.js";
   import { getDatabase, ref, push, set, onValue, remove } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-database.js";
 
   const firebaseConfig = {
@@ -1087,7 +1062,6 @@ label.product input.product-checkbox {
   };
 
   const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
   const db = getDatabase(app);
 
   const totalPriceEl = document.getElementById('totalPrice');
@@ -1105,10 +1079,6 @@ function updateSummary() {
   totalPriceEl.textContent = `Cena łączna: ${total.toFixed(2)} PLN`;
   totalPricePerPersonEl.textContent = `Cena łączna na osobę: ${(total / 6).toFixed(2)} PLN`;
 }
-
-    totalPriceEl.textContent = `Cena łączna: ${total.toFixed(2)} PLN`;
-    totalPricePerPersonEl.textContent = `Cena łączna na osobę: ${(total / 6).toFixed(2)} PLN`;
-  }
 
   // Funkcja: renderowanie głosów z bazy
   function renderVotes(votes) {
