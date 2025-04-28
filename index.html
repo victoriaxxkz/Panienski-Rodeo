@@ -1049,100 +1049,106 @@ label.product input.product-checkbox {
 <div id="votesList"></div>
 
 <script>
-const googleScriptURL = 'https://script.google.com/macros/s/AKfycbwmcHDfPri3jZ3cS-mRGmjH5kGkF0m4Ydi7eGXYO8kgJ50P7dsa-9Pqkp8J3lZ26o-0/exec'; 
-
-// ➔ Zmienione miejsce! Najpierw łapiemy elementy
-const totalPriceEl = document.getElementById('totalPrice');
-const totalPricePerPersonEl = document.getElementById('totalPricePerPerson');
-
-// Funkcja: aktualizacja cen
-function updateSummary() {
-  let total = 0;
-  document.querySelectorAll('.product-checkbox:checked').forEach(checkbox => {
-    const price = parseFloat(checkbox.dataset.unitPrice) || 0;
-    total += price;
-  });
-
-  totalPriceEl.textContent = `Cena łączna: ${total.toFixed(2)} PLN`;
-  totalPricePerPersonEl.textContent = `Cena łączna na osobę: ${(total / 6).toFixed(2)} PLN`;
-}
-
-// Funkcja: pokazanie komunikatu
-function showCustomMessage(message) {
-  const customMsg = document.createElement('div');
-  customMsg.textContent = message;
-  customMsg.style.position = 'fixed';
-  customMsg.style.top = '20px';
-  customMsg.style.right = '20px';
-  customMsg.style.background = '#ff66b2';
-  customMsg.style.color = 'white';
-  customMsg.style.padding = '12px 20px';
-  customMsg.style.borderRadius = '10px';
-  customMsg.style.fontSize = '16px';
-  customMsg.style.zIndex = '9999';
-  customMsg.style.boxShadow = '0 4px 10px rgba(255, 105, 180, 0.6)';
-  customMsg.style.animation = 'fadeInOut 3s forwards';
-  document.body.appendChild(customMsg);
-
-  setTimeout(() => {
-    customMsg.remove();
-  }, 3000);
-}
-
-// Animacja fade-in/fade-out
-const style = document.createElement('style');
-style.innerHTML = `
-  @keyframes fadeInOut {
-    0% { opacity: 0; }
-    10% { opacity: 1; }
-    90% { opacity: 1; }
-    100% { opacity: 0; }
+  const googleScriptURL = 'https://script.google.com/macros/s/AKfycbwmcHDfPri3jZ3cS-mRGmjH5kGkF0m4Ydi7eGXYO8kgJ50P7dsa-9Pqkp8J3lZ26o-0/exec'; 
+  
+  // ➔ Najpierw łapiemy elementy
+  const totalPriceEl = document.getElementById('totalPrice');
+  const totalPricePerPersonEl = document.getElementById('totalPricePerPerson');
+  
+  // Funkcja: aktualizacja cen
+  function updateSummary() {
+    let total = 0;
+    document.querySelectorAll('.product-checkbox:checked').forEach(checkbox => {
+      const price = parseFloat(checkbox.dataset.unitPrice) || 0;
+      total += price;
+    });
+  
+    totalPriceEl.textContent = `Cena łączna: ${total.toFixed(2)} PLN`;
+    totalPricePerPersonEl.textContent = `Cena łączna na osobę: ${(total / 6).toFixed(2)} PLN`;
   }
-`;
-document.head.appendChild(style);
-
-// Obsługa kliknięcia "Zapisz wybór"
-document.getElementById('saveSelection').addEventListener('click', () => {
-  const selectedProducts = [];
-  document.querySelectorAll('.product-checkbox:checked').forEach(checkbox => {
-    const productDiv = checkbox.closest('.product');
-    const productName = productDiv.querySelector('strong')?.textContent.trim() || 'Nieznany produkt';
-    selectedProducts.push(productName);
-  });
-
-  if (selectedProducts.length === 0) {
-    alert('Wybierz coś przed zapisaniem!');
-    return;
+  
+  // Funkcja: pokazanie komunikatu
+  function showCustomMessage(message) {
+    const customMsg = document.createElement('div');
+    customMsg.textContent = message;
+    customMsg.style.position = 'fixed';
+    customMsg.style.top = '20px';
+    customMsg.style.right = '20px';
+    customMsg.style.background = '#ff66b2';
+    customMsg.style.color = 'white';
+    customMsg.style.padding = '12px 20px';
+    customMsg.style.borderRadius = '10px';
+    customMsg.style.fontSize = '16px';
+    customMsg.style.zIndex = '9999';
+    customMsg.style.boxShadow = '0 4px 10px rgba(255, 105, 180, 0.6)';
+    customMsg.style.animation = 'fadeInOut 3s forwards';
+    document.body.appendChild(customMsg);
+  
+    setTimeout(() => {
+      customMsg.remove();
+    }, 3000);
   }
-
-  // Wyślij każdy produkt osobno do Google Sheets
-  selectedProducts.forEach(product => {
-fetch(googleScriptURL, {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({ product: product })
-})
-.then(response => response.text())
-.then(data => {
-  console.log('Odpowiedź serwera:', data);
-})
-.catch(error => {
-  console.error('Błąd:', error);
-});
-
-  showCustomMessage('Twój wybór został zapisany! 🎉');
-  document.querySelectorAll('.product-checkbox').forEach(cb => cb.checked = false);
-  updateSummary();
-});
-
-// Start
-window.addEventListener('load', () => {
-  document.querySelectorAll('.product-checkbox').forEach(checkbox => {
-    checkbox.addEventListener('change', updateSummary);
+  
+  // Animacja fade-in/fade-out
+  const style = document.createElement('style');
+  style.innerHTML = `
+    @keyframes fadeInOut {
+      0% { opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+  `;
+  document.head.appendChild(style);
+  
+  // Obsługa kliknięcia "Zapisz wybór"
+  document.getElementById('saveSelection').addEventListener('click', () => {
+    const selectedProducts = [];
+    document.querySelectorAll('.product-checkbox:checked').forEach(checkbox => {
+      const productDiv = checkbox.closest('.product');
+      const productName = productDiv.querySelector('strong')?.textContent.trim() || 'Nieznany produkt';
+      selectedProducts.push(productName);
+    });
+  
+    if (selectedProducts.length === 0) {
+      alert('Wybierz coś przed zapisaniem!');
+      return;
+    }
+  
+    // Wyślij WSZYSTKIE produkty i dopiero potem wykonaj akcję
+    Promise.all(
+      selectedProducts.map(product => {
+        return fetch(googleScriptURL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ product: product })
+        });
+      })
+    )
+    .then(() => {
+      showCustomMessage('Twój wybór został zapisany! 🎉');
+      document.querySelectorAll('.product-checkbox').forEach(cb => cb.checked = false);
+      updateSummary(); // poprawna aktualizacja ceny po zapisie
+    })
+    .catch(error => {
+      console.error('Błąd podczas zapisu:', error);
+      alert('Wystąpił błąd podczas zapisu wyboru!');
+    });
   });
-  updateSummary();
-});
-</script>
+  
+  // Start: kiedy strona się załaduje
+  window.addEventListener('load', () => {
+    document.querySelectorAll('.product-checkbox').forEach(checkbox => {
+      checkbox.addEventListener('change', updateSummary);
+    });
+    updateSummary();
+  });
+  </script>
+  
 
+
+
+</body>
+</html>
