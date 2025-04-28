@@ -989,7 +989,7 @@ label.product input.product-checkbox {
   <div class="product-content">
     <div class="product-info">
       <strong> Koszulka Pink Pony Club, 7 szt.  </strong>
-      <img src="xxxx" alt="zdjecie">
+      <img src="https://img.kwcdn.com/product/fancy/d34ece20-b608-4ebe-b713-5d52681e8ec9.jpg?imageView2/2/w/800/q/70/format/webp" alt="zdjecie">
     </div>
     <div class="product-details">
       <div>Cena jednostkowa: 142,80 PLN / 7 szt. </div>
@@ -1047,25 +1047,37 @@ label.product input.product-checkbox {
 <h2 id="votesSummary">Podsumowanie głosów</h2>
 <div id="votesList"></div>
 
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-  import { getDatabase, ref, push, set, onValue, remove } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-database.js";
+<script>
+const googleScriptURL = 'https://script.google.com/macros/s/AKfycbyCu65B4Nt7R3q7vvFGeaZjzOPNlY4HeN-9ALkokCk5WINvj4ZEmS-bSSOVL5uWQcyHUw/exec'; // Twój link!
 
-  // ✅ PEŁNA konfiguracja z databaseURL!
-  const firebaseConfig = {
-    apiKey: "AIzaSyA2xbcv3Kr3pWONZ_LZNBH4ggQYklGep2c",
-    authDomain: "weekendpanienskirodeo.firebaseapp.com",
-    databaseURL: "https://weekendpanienskirodeo-default-rtdb.europe-west1.firebasedatabase.app",
-    projectId: "weekendpanienskirodeo",
-    storageBucket: "weekendpanienskirodeo.appspot.com",
-    messagingSenderId: "969474522755",
-    appId: "1:969474522755:web:10a39837d092a7bc7a65b6",
-    measurementId: "G-HP72EB5JTZ"
-  };
+document.getElementById('saveSelection').addEventListener('click', () => {
+  const selectedProducts = [];
+  document.querySelectorAll('.product-checkbox:checked').forEach(checkbox => {
+    const productDiv = checkbox.closest('.product');
+    const productName = productDiv.querySelector('strong')?.textContent.trim() || 'Nieznany produkt';
+    selectedProducts.push(productName);
+  });
 
-  const app = initializeApp(firebaseConfig);
-  const db = getDatabase(app);
+  if (selectedProducts.length === 0) {
+    alert('Wybierz coś przed zapisaniem!');
+    return;
+  }
 
+  // Wyślij każdy produkt osobno do arkusza
+  selectedProducts.forEach(product => {
+    fetch(googleScriptURL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ product: product })
+    });
+  });
+
+  alert('Twój wybór został zapisany! 🎉');
+  document.querySelectorAll('.product-checkbox').forEach(cb => cb.checked = false);
+});
   const totalPriceEl = document.getElementById('totalPrice');
   const totalPricePerPersonEl = document.getElementById('totalPricePerPerson');
   const votesList = document.getElementById('votesList');
