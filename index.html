@@ -1049,8 +1049,13 @@ label.product input.product-checkbox {
 <div id="votesList"></div>
 
 <script>
-const googleScriptURL = 'https://script.google.com/macros/s/AKfycbwK-emAK0Yo16wVQasWkQkO_p_0_jm9sgBUBy6QbOj1duss8yJHvj3u6XbVrrwJIMVKxA/exec'; // Twój link!
+const googleScriptURL = 'https://script.google.com/macros/s/AKfycbwK-emAK0Yo16wVQasWkQkO_p_0_jm9sgBUBy6QbOj1duss8yJHvj3u6XbVrrwJIMVKxA/exec'; 
 
+// ➔ Zmienione miejsce! Najpierw łapiemy elementy
+const totalPriceEl = document.getElementById('totalPrice');
+const totalPricePerPersonEl = document.getElementById('totalPricePerPerson');
+
+// Funkcja: aktualizacja cen
 function updateSummary() {
   let total = 0;
   document.querySelectorAll('.product-checkbox:checked').forEach(checkbox => {
@@ -1096,10 +1101,6 @@ style.innerHTML = `
 `;
 document.head.appendChild(style);
 
-// Elementy
-const totalPriceEl = document.getElementById('totalPrice');
-const totalPricePerPersonEl = document.getElementById('totalPricePerPerson');
-
 // Obsługa kliknięcia "Zapisz wybór"
 document.getElementById('saveSelection').addEventListener('click', () => {
   const selectedProducts = [];
@@ -1139,3 +1140,4 @@ window.addEventListener('load', () => {
   updateSummary();
 });
 </script>
+
