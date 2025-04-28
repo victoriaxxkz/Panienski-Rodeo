@@ -8,15 +8,15 @@
     import { getDatabase, ref, push, set, onValue } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-database.js";
   
     const firebaseConfig = {
-      apiKey: "AIzaSyA2xbcv3Kr3pWONZ_LZNBH4ggQYklGep2c",
-      authDomain: "weekendpanienskirodeo.firebaseapp.com",
-      projectId: "weekendpanienskirodeo",
-      storageBucket: "weekendpanienskirodeo.appspot.com", <!-- poprawiłam tutaj też literówkę! -->
-      messagingSenderId: "969474522755",
-      appId: "1:969474522755:web:10a39837d092a7bc7a65b6",
-      measurementId: "G-HP72EB5JTZ"
-    };
-  
+  apiKey: "AIzaSyA2xbcv3Kr3pWONZ_LZNBH4ggQYklGep2c",
+  authDomain: "weekendpanienskirodeo.firebaseapp.com",
+  databaseURL: "https://weekendpanienskirodeo-default-rtdb.europe-west1.firebasedatabase.app",  // DODAJ TO!
+  projectId: "weekendpanienskirodeo",
+  storageBucket: "weekendpanienskirodeo.appspot.com",
+  messagingSenderId: "969474522755",
+  appId: "1:969474522755:web:10a39837d092a7bc7a65b6",
+  measurementId: "G-HP72EB5JTZ"
+};
     const app = initializeApp(firebaseConfig);
     const analytics = getAnalytics(app);
   
@@ -1087,13 +1087,11 @@ label.product input.product-checkbox {
   const analytics = getAnalytics(app);
   const db = getDatabase(app);
 
-  // Funkcje
-  function attachCheckboxListeners() {
-    document.querySelectorAll('.product-checkbox').forEach(checkbox => {
-      checkbox.addEventListener('change', updateSummary);
-    });
-  }
+  const totalPriceEl = document.getElementById('totalPrice');
+  const totalPricePerPersonEl = document.getElementById('totalPricePerPerson');
+  const votesList = document.getElementById('votesList');
 
+  // Funkcja: aktualizuj podsumowanie wyboru
   function updateSummary() {
     let total = 0;
     votesList.innerHTML = '';
@@ -1106,7 +1104,8 @@ label.product input.product-checkbox {
       total += price;
 
       const item = document.createElement('div');
-      item.textContent = `${productName}: ${price.toFixed(2)} PLN`;
+      item.innerHTML = `✅ <strong>${productName}</strong> - ${price.toFixed(2)} PLN`;
+      item.style.marginBottom = '8px';
       votesList.appendChild(item);
     });
 
@@ -1114,15 +1113,18 @@ label.product input.product-checkbox {
     totalPricePerPersonEl.textContent = `Cena łączna na osobę: ${(total / 6).toFixed(2)} PLN`;
   }
 
+  // Funkcja: renderowanie głosów z bazy
   function renderVotes(votes) {
     votesList.innerHTML = '';
     for (let product in votes) {
       const div = document.createElement('div');
-      div.textContent = `${product}: ${votes[product]} głosów`;
+      div.innerHTML = `🎯 <strong>${product}</strong> – ${votes[product]} głosów`;
+      div.style.marginBottom = '8px';
       votesList.appendChild(div);
     }
   }
 
+  // Funkcja: załaduj głosy z Firebase
   function loadVotes() {
     onValue(ref(db, 'votes'), (snapshot) => {
       const allVotes = snapshot.val() || {};
@@ -1138,7 +1140,14 @@ label.product input.product-checkbox {
     });
   }
 
-  // Przyciski
+  // Obsługa checkboxów
+  function attachCheckboxListeners() {
+    document.querySelectorAll('.product-checkbox').forEach(checkbox => {
+      checkbox.addEventListener('change', updateSummary);
+    });
+  }
+
+  // Obsługa zapisywania wyboru
   document.getElementById('saveSelection').addEventListener('click', () => {
     const votes = {};
     document.querySelectorAll('.product-checkbox:checked').forEach(checkbox => {
@@ -1147,10 +1156,15 @@ label.product input.product-checkbox {
       votes[productName] = true;
     });
 
+    if (Object.keys(votes).length === 0) {
+      alert('Wybierz coś przed zapisaniem!');
+      return;
+    }
+
     const newVoteRef = push(ref(db, 'votes'));
     set(newVoteRef, votes)
       .then(() => {
-        alert('Twój wybór został zapisany!');
+        showCustomMessage('Twój wybór został zapisany! 🎉');
         document.querySelectorAll('.product-checkbox').forEach(cb => cb.checked = false);
         updateSummary();
       })
@@ -1160,11 +1174,12 @@ label.product input.product-checkbox {
       });
   });
 
+  // Obsługa resetu głosów
   document.getElementById('resetVotes').addEventListener('click', () => {
     if (confirm('Czy na pewno chcesz zresetować wszystkie głosy?')) {
       remove(ref(db, 'votes'))
         .then(() => {
-          alert('Wszystkie głosy zostały usunięte.');
+          showCustomMessage('Wszystkie głosy zostały usunięte.');
           renderVotes({});
           updateSummary();
         })
@@ -1175,17 +1190,47 @@ label.product input.product-checkbox {
     }
   });
 
-  // Ładowanie na start
+  // Funkcja: pokazanie własnego komunikatu na stronie
+  function showCustomMessage(message) {
+    const customMsg = document.createElement('div');
+    customMsg.textContent = message;
+    customMsg.style.position = 'fixed';
+    customMsg.style.top = '20px';
+    customMsg.style.right = '20px';
+    customMsg.style.background = '#ff66b2';
+    customMsg.style.color = 'white';
+    customMsg.style.padding = '12px 20px';
+    customMsg.style.borderRadius = '10px';
+    customMsg.style.fontSize = '16px';
+    customMsg.style.zIndex = '9999';
+    customMsg.style.boxShadow = '0 4px 10px rgba(255, 105, 180, 0.6)';
+    customMsg.style.animation = 'fadeInOut 3s forwards';
+
+    document.body.appendChild(customMsg);
+
+    setTimeout(() => {
+      customMsg.remove();
+    }, 3000);
+  }
+
+  // Dodajemy na koniec animację CSS fade-in i fade-out
+  const style = document.createElement('style');
+  style.innerHTML = `
+    @keyframes fadeInOut {
+      0% { opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+  `;
+  document.head.appendChild(style);
+
+  // Start
   window.addEventListener('load', () => {
     attachCheckboxListeners();
     loadVotes();
     updateSummary();
   });
-
-  // Elementy DOM
-  const totalPriceEl = document.getElementById('totalPrice');
-  const totalPricePerPersonEl = document.getElementById('totalPricePerPerson');
-  const votesList = document.getElementById('votesList');
 </script>
 
 
