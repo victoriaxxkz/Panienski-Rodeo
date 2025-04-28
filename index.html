@@ -134,7 +134,7 @@ h2, h3 {
             width: 125px; /* Szerokość obrazka - możesz zmieniać */
             height: auto;
             }
-    .kasia-image {
+        .kasia-image {
             position: absolute;
             top: 0px; /* Odstęp od góry - możesz dostosować */
             right: 20px; /* Odstęp od prawej */
@@ -327,7 +327,7 @@ label.product input.product-checkbox {
   
 
 <div class="kasia-image">
-    <img src="Kasia.png" alt="Kasia">
+    <img src="kasia.png" alt="Kasia">
   </div>
 
   <div class="cowgirl-image">
@@ -1057,10 +1057,6 @@ document.getElementById('saveSelection').addEventListener('click', () => {
     const productName = productDiv.querySelector('strong')?.textContent.trim() || 'Nieznany produkt';
     selectedProducts.push(productName);
   });
-
-  if (selectedProducts.length === 0) {
-    alert('Wybierz coś przed zapisaniem!');
-    return; // zatrzymuje dalsze wykonywanie funkcji
   }
 
   // Wyślij każdy produkt osobno do Google Sheets
