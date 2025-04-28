@@ -1138,20 +1138,27 @@ document.getElementById('imageModal').addEventListener('click', function() {
       }
     }
   
-    document.getElementById('saveSelection').addEventListener('click', function() {
+    import { getDatabase, ref, push, set, onValue } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-database.js";
+
+const db = getDatabase(app);
+
+document.getElementById('saveSelection').addEventListener('click', function() {
   const votes = {};
   document.querySelectorAll('.product-checkbox:checked').forEach(checkbox => {
     const productName = checkbox.closest('.product').querySelector('strong')?.textContent.trim() || 'Nieznany produkt';
-    votes[productName] = true; // zaznaczenie jako głos
+    votes[productName] = true;
   });
 
-  const newVoteRef = db.ref('votes').push(); // Tworzy nowe unikalne głosowanie
-  newVoteRef.set(votes).then(() => {
+  const newVoteRef = push(ref(db, 'votes'));
+  set(newVoteRef, votes).then(() => {
     alert('Twój wybór został zapisany!');
     document.querySelectorAll('.product-checkbox').forEach(cb => cb.checked = false);
-    updateSummary(); 
+    updateSummary();
+  }).catch(error => {
+    console.error('Błąd podczas zapisywania do bazy:', error);
   });
 });
+
 
   
     document.getElementById('resetVotes').addEventListener('click', function() {
@@ -1203,4 +1210,3 @@ window.addEventListener('load', () => {
 
 </body>
 </html>
-
