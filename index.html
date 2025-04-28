@@ -1,4 +1,245 @@
-@media (max-width: 768px) {
+<!DOCTYPE html>
+<html lang="pl">
+<head> 
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Rye&display=swap" rel="stylesheet">
+
+
+ 
+  <title>Głosowanie - Wieczór Panieński Cowgirl</title>
+  <link rel="icon" type="image/jpeg" href="https://i.pinimg.com/736x/86/c1/17/86c1172421658d10d958a5feea1a81da.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+
+body {
+  font-family: 'Comic Neue', 'Comic Sans MS', cursive, sans-serif;
+  margin: 20px;
+  position: relative;
+  background: linear-gradient(135deg, #ffe6f0, #ffd1dc);
+  background-attachment: fixed;
+  color: #d63384;
+  overflow-x: hidden;
+}
+
+    h1 {
+  font-family: 'Rye', cursive;
+}
+
+summary {
+  font-family: 'Rye', cursive;
+}
+
+.summary-box h3 {
+  font-family: 'Rye', cursive;
+}
+
+#votesSummary {
+  font-family: 'Rye', cursive;
+}
+
+    body {
+    
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      margin: 20px;
+      position: relative;
+      background: linear-gradient(135deg, #ffe6f0, #ffd1dc);
+      background-attachment: fixed;
+      color: #d63384;
+      overflow-x: hidden;
+    }
+    h1 {
+  text-align: center;
+  text-shadow: 2px 2px 5px #ff99cc;
+}
+
+h2, h3 {
+  text-align: left;
+  text-shadow: 2px 2px 5px #ff99cc;
+}
+
+    details {
+      margin-bottom: 20px;
+      background: #ffe6f0;
+      border-radius: 20px;
+      padding: 15px;
+      box-shadow: 0 4px 10px rgba(255, 105, 180, 0.5);
+    }
+    summary {
+      font-size: 1.2em;
+      cursor: pointer;
+    }
+    .product {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  border: 2px dashed #ff66b2;
+  background: #fff0f5;
+  padding: 15px;
+  border-radius: 15px;
+  margin-bottom: 20px;
+  width: 100%;
+  box-shadow: 0 4px 8px rgba(255, 182, 193, 0.5);
+}
+
+.product-content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.product-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+
+
+.product-info img {
+  width: 120px;
+  height: auto;
+  margin-top: 5px;
+  border: 2px solid #ff99cc;
+  border-radius: 15px;
+}
+
+.product-details {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.product-details a {
+  color: #d63384;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.product-details a:hover {
+  text-decoration: underline;
+}
+
+.product-price {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-align: left;
+}
+
+.product-link a {
+  text-decoration: none;
+  color: #d63384;
+  font-weight: bold;
+}
+
+.product-link a:hover {
+  text-decoration: underline;
+}
+
+    .cowgirl-image {
+            position: absolute;
+            top: 0px; /* Odstęp od góry - możesz dostosować */
+            left: 2px; /* Odstęp od lwewj */
+            }
+
+            .cowgirl-image img {
+            width: 125px; /* Szerokość obrazka - możesz zmieniać */
+            height: auto;
+            }
+        .kasia-image {
+            position: absolute;
+            top: 0px; /* Odstęp od góry - możesz dostosować */
+            right: 20px; /* Odstęp od prawej */
+            }
+
+            .kasia-image img {
+            width: 270px; /* Szerokość obrazka - możesz zmieniać */
+            height: auto;
+            }
+            
+    .product img {
+      max-width: 120px;
+      height: auto;
+      display: block;
+      margin-top: 5px;
+      border: 2px solid #ff99cc;
+      border-radius: 15px;
+    }
+
+    .product-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      font-size: 16px;
+    }
+    .delete-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 20px;
+      color: #ff3385;
+    }
+    .summary-box {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #ffe6f0;
+      padding: 20px;
+      border: 3px dashed #d63384;
+      border-radius: 15px;
+      width: 260px;
+      box-shadow: 0px 0px 15px pink;
+    }
+    .checkbox {
+      margin-right: 10px;
+    }
+    #resetSelection, #resetVotes {
+      margin-top: 10px;
+      width: 100%;
+      padding: 10px;
+      cursor: pointer;
+      background: #ff66b2;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    #resetSelection:hover, #resetVotes:hover {
+      background: #ff3385;
+    }
+    #votesSummary {
+      margin-top: 40px;
+      background: #ffe6f0;
+      padding: 15px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(255, 105, 180, 0.4);
+    }
+    #decorations {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      width: 140px;
+      animation: float 6s ease-in-out infinite;
+    }
+    #decorations img {
+      width: 100%;
+      margin-bottom: 15px;
+    }
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+      100% { transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
   body {
     font-family: 'Comic Sans MS', cursive, sans-serif;
   }
@@ -24,3 +265,248 @@
     font-weight: bold; /* możesz zostawić bold żeby było wyraźniej */
   }
 }
+
+
+
+
+  .kasia-image img {
+    width: 180px;
+  }
+
+  .cowgirl-image img {
+    width: 100px;
+  }
+
+  .summary-box {
+    position: static;
+    margin: 20px auto;
+    width: 90%;
+    box-shadow: 0 4px 10px pink;
+  }
+
+  details {
+    padding: 10px;
+  }
+
+
+  .product img {
+    max-width: 100%;
+  }
+
+  .summary-box button {
+    font-size: 16px;
+  }
+
+  .title-background img {
+    width: 90%;
+    max-width: 400px;
+  }
+
+.product-warning {
+  margin-top: 10px;
+  padding: 8px 12px;
+  background-color: #ffe6e6;
+  border: 2px solid red;
+  color: red;
+  font-weight: bold;
+  font-size: 14px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+label.product {
+  cursor: pointer; /* zmiana kursora na łapkę */
+}
+
+label.product input.product-checkbox {
+  margin-right: 10px;
+}
+.section-header {
+  font-family: 'Rye', cursive;
+  font-size: 28px;
+  color: #d63384;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  text-align: left; /* ustawienie tekstu na lewo */
+  text-shadow: 2px 2px 5px #ff99cc;
+  padding-left: 5px; /* delikatne odsunięcie od lewej */
+  position: relative;
+}
+
+.section-header::after {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 3px;
+  background: #ff66b2;
+  margin-top: 6px;
+  margin-left: 5px; /* aby kreska była pod tekstem */
+  border-radius: 2px;
+}
+
+
+
+}
+
+/* RESPONSYWNE ZDJĘCIA PRODUKTÓW */
+.product img {
+  width: 100%;
+  height: auto;
+  max-width: 120px;
+  display: block;
+  margin-top: 5px;
+  border: 2px solid #ff99cc;
+  border-radius: 15px;
+}
+
+
+
+  .product img {
+    max-width: 80px; /* Mniejsze zdjęcia na telefonie */
+    margin: 10px auto;
+  }
+
+  .product-details {
+    align-items: center;
+  }
+
+  /* Poprawka dla sekcji razem na telefonie */
+  .summary-box {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    width: auto;
+    padding: 15px;
+    background: #ffe6f0;
+    border: 2px dashed #d63384;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(255, 105, 180, 0.4);
+    z-index: 1000;
+  }
+
+  .summary-box h3, 
+  .summary-box div {
+    text-align: center;
+  }
+}
+
+
+  </style>
+</head>
+<body>
+
+ 
+{...}}
+
+
+
+  </div>
+</details>
+
+<div class="summary-box">
+  <h3>Razem</h3>
+  <div id="totalPrice">Cena łączna: 0 PLN</div>
+  <div id="totalPricePerPerson">Cena łączna na osobę: 0 PLN</div>
+  <button id="saveSelection"> </button>
+  <button id="resetSelection">Resetuj głosy</button> 
+</div>
+
+<script>
+
+document.addEventListener('DOMContentLoaded', () => {
+  const modal = document.getElementById('imageModal');
+  const modalImg = document.getElementById('modalImage');
+
+  document.querySelectorAll('.product-info img').forEach(img => {
+    img.style.cursor = 'zoom-in'; // dodajemy kursor "lupę" przy obrazkach
+
+    img.addEventListener('click', () => {
+      modal.style.display = 'flex';
+      modal.style.justifyContent = 'center';
+      modal.style.alignItems = 'center';
+      modalImg.src = img.src; // wklejamy kliknięte zdjęcie do modala
+    });
+  });
+// Obsługa przycisku "Resetuj głosy"
+document.getElementById('resetSelection').addEventListener('click', () => {
+  document.querySelectorAll('.product-checkbox').forEach(cb => cb.checked = false);
+  updateSummary();
+  showCustomMessage('Wszystkie głosy zostały zresetowane!');
+});
+
+  modal.addEventListener('click', () => {
+    modal.style.display = 'none';
+    modalImg.src = '';
+  });
+});
+
+  const googleScriptURL = 'https://script.google.com/macros/s/AKfycbyMf-KeUssHKr5TwaQYWoDoyMhh5H2Pqriex_7QZWEbkm752dp2LjOsl_sfCYk7jEKq/exec'; 
+
+  const totalPriceEl = document.getElementById('totalPrice');
+  const totalPricePerPersonEl = document.getElementById('totalPricePerPerson');
+
+  function updateSummary() {
+    let total = 0;
+    document.querySelectorAll('.product-checkbox:checked').forEach(checkbox => {
+      const price = parseFloat(checkbox.dataset.unitPrice) || 0;
+      total += price;
+    });
+
+    totalPriceEl.textContent = `Cena łączna: ${total.toFixed(2)} PLN`;
+    totalPricePerPersonEl.textContent = `Cena łączna na osobę: ${(total / 6).toFixed(2)} PLN`;
+  }
+
+  function showCustomMessage(message) {
+    const customMsg = document.createElement('div');
+    customMsg.textContent = message;
+    customMsg.style.position = 'fixed';
+    customMsg.style.top = '20px';
+    customMsg.style.right = '20px';
+    customMsg.style.background = '#ff66b2';
+    customMsg.style.color = 'white';
+    customMsg.style.padding = '12px 20px';
+    customMsg.style.borderRadius = '10px';
+    customMsg.style.fontSize = '16px';
+    customMsg.style.zIndex = '9999';
+    customMsg.style.boxShadow = '0 4px 10px rgba(255, 105, 180, 0.6)';
+    customMsg.style.animation = 'fadeInOut 3s forwards';
+    document.body.appendChild(customMsg);
+    setTimeout(() => { customMsg.remove(); }, 3000);
+  }
+
+  document.getElementById('saveSelection').addEventListener('click', () => {
+    const selectedProducts = [];
+    document.querySelectorAll('.product-checkbox:checked').forEach(checkbox => {
+      const label = checkbox.parentElement.textContent.trim();
+      selectedProducts.push(label);
+    });
+
+    if (selectedProducts.length === 0) {
+      alert('Wybierz coś przed zapisaniem!');
+      return;
+    }
+
+    fetch(googleScriptURL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ products: selectedProducts })
+    })
+    .then(response => response.text())
+    .then(data => {
+      console.log('Odpowiedź serwera:', data);
+      showCustomMessage('Twój wybór został zapisany! 🎉');
+      document.querySelectorAll('.product-checkbox').forEach(cb => cb.checked = false);
+      updateSummary();
+    })
+  });
+
+  window.addEventListener('load', () => {
+    document.querySelectorAll('.product-checkbox').forEach(checkbox => {
+      checkbox.addEventListener('change', updateSummary);
+    });
+    updateSummary();
+  });
+</script>
+
+</body>
+</html>
