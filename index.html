@@ -1068,145 +1068,126 @@ label.product input.product-checkbox {
 <h2 id="votesSummary">Podsumowanie głosów</h2>
 <div id="votesList"></div>
 
-<script>
-    const kapeluszeList = document.getElementById('kapeluszeList');
-    const dekoracjeList = document.getElementById('dekoracjeList');
-    const totalPriceEl = document.getElementById('totalPrice');
-    const totalPricePerPersonEl = document.getElementById('totalPricePerPerson');
-    const votesList = document.getElementById('votesList');
-  
-    function attachDeleteListeners() {
-      document.querySelectorAll('.delete-button').forEach(button => {
-        button.addEventListener('click', function() {
-          this.parentElement.remove();
-          (updateSummary);
-        });
-      });
-    }
-  
-// Obsługa powiększania zdjęć
-document.querySelectorAll('.product-info img').forEach(img => {
-  img.addEventListener('click', function(event) {
-    event.stopPropagation(); // żeby nie zaznaczało checkboxa
-    const modal = document.getElementById('imageModal');
-    const modalImg = document.getElementById('modalImage');
-    modalImg.src = this.src;
-    modal.style.display = 'flex';
-  });
-});
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-analytics.js";
+  import { getDatabase, ref, push, set, onValue, remove } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-database.js";
 
-document.getElementById('imageModal').addEventListener('click', function() {
-  this.style.display = 'none';
-});
+  const firebaseConfig = {
+    apiKey: "AIzaSyA2xbcv3Kr3pWONZ_LZNBH4ggQYklGep2c",
+    authDomain: "weekendpanienskirodeo.firebaseapp.com",
+    projectId: "weekendpanienskirodeo",
+    storageBucket: "weekendpanienskirodeo.appspot.com",
+    messagingSenderId: "969474522755",
+    appId: "1:969474522755:web:10a39837d092a7bc7a65b6",
+    measurementId: "G-HP72EB5JTZ"
+  };
 
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+  const db = getDatabase(app);
 
-    function attachCheckboxListeners() {
-      document.querySelectorAll('.product-checkbox').forEach(checkbox => {
-        checkbox.addEventListener('change', updateSummary);
-      });
-    }
-  
-    function updateSummary() {
-  let total = 0;
-  let votes = {};
-
-  votesList.innerHTML = '';
-
-  document.querySelectorAll('.product-checkbox:checked').forEach(checkbox => {
-    const productDiv = checkbox.closest('.product');
-    const productName = productDiv.querySelector('strong')?.textContent.trim() || 'Nieznany produkt';
-    const price = parseFloat(checkbox.dataset.unitPrice); // <--- poprawione tu!
-
-    total += price;
-
-    const item = document.createElement('div');
-    item.textContent = `${productName}: ${price.toFixed(2)} PLN`;
-    votesList.appendChild(item);
-  });
-
-  totalPriceEl.textContent = `Cena łączna: ${total.toFixed(2)} PLN`;
-  totalPricePerPersonEl.textContent = `Cena łączna na osobę: ${(total / 6).toFixed(2)} PLN`;
-}
-
-  
-    function renderVotes(votes) {
-      votesList.innerHTML = '';
-      for (let name in votes) {
-        const div = document.createElement('div');
-        div.textContent = `${name}: ${votes[name]} głosów`;
-        votesList.appendChild(div);
-      }
-    }
-  
-    import { getDatabase, ref, push, set, onValue } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-database.js";
-
-const db = getDatabase(app);
-
-document.getElementById('saveSelection').addEventListener('click', function() {
-  const votes = {};
-  document.querySelectorAll('.product-checkbox:checked').forEach(checkbox => {
-    const productName = checkbox.closest('.product').querySelector('strong')?.textContent.trim() || 'Nieznany produkt';
-    votes[productName] = true;
-  });
-
-  const newVoteRef = push(ref(db, 'votes'));
-  set(newVoteRef, votes).then(() => {
-    alert('Twój wybór został zapisany!');
-    document.querySelectorAll('.product-checkbox').forEach(cb => cb.checked = false);
-    updateSummary();
-  }).catch(error => {
-    console.error('Błąd podczas zapisywania do bazy:', error);
-  });
-});
-
-
-  
-    document.getElementById('resetVotes').addEventListener('click', function() {
-      if (confirm('Czy na pewno chcesz zresetować wszystkie głosy?')) {
-        renderVotes({});
-        updateSummary();
-      }
+  // Funkcje
+  function attachCheckboxListeners() {
+    document.querySelectorAll('.product-checkbox').forEach(checkbox => {
+      checkbox.addEventListener('change', updateSummary);
     });
-  
-    window.addEventListener('load', () => {
-      attachDeleteListeners();
-      attachCheckboxListeners();
-      updateSummary();
-    });
-
-    function loadVotes() {
-  db.ref('votes').on('value', (snapshot) => {
-    const allVotes = snapshot.val() || {};
-    const voteCounts = {};
-
-    Object.values(allVotes).forEach(vote => {
-      for (let product in vote) {
-        voteCounts[product] = (voteCounts[product] || 0) + 1;
-      }
-    });
-
-    renderVotes(voteCounts);
-  });
-}
-
-function renderVotes(votes) {
-  const votesList = document.getElementById('votesList');
-  votesList.innerHTML = '';
-  for (let product in votes) {
-    const div = document.createElement('div');
-    div.textContent = `${product}: ${votes[product]} głosów`;
-    votesList.appendChild(div);
   }
-}
 
-// Uruchom wczytywanie po załadowaniu strony
-window.addEventListener('load', () => {
-  attachCheckboxListeners();
-  loadVotes();
-  updateSummary();
-});
+  function updateSummary() {
+    let total = 0;
+    votesList.innerHTML = '';
 
-  </script>
+    document.querySelectorAll('.product-checkbox:checked').forEach(checkbox => {
+      const productDiv = checkbox.closest('.product');
+      const productName = productDiv.querySelector('strong')?.textContent.trim() || 'Nieznany produkt';
+      const price = parseFloat(checkbox.dataset.unitPrice);
+
+      total += price;
+
+      const item = document.createElement('div');
+      item.textContent = `${productName}: ${price.toFixed(2)} PLN`;
+      votesList.appendChild(item);
+    });
+
+    totalPriceEl.textContent = `Cena łączna: ${total.toFixed(2)} PLN`;
+    totalPricePerPersonEl.textContent = `Cena łączna na osobę: ${(total / 6).toFixed(2)} PLN`;
+  }
+
+  function renderVotes(votes) {
+    votesList.innerHTML = '';
+    for (let product in votes) {
+      const div = document.createElement('div');
+      div.textContent = `${product}: ${votes[product]} głosów`;
+      votesList.appendChild(div);
+    }
+  }
+
+  function loadVotes() {
+    onValue(ref(db, 'votes'), (snapshot) => {
+      const allVotes = snapshot.val() || {};
+      const voteCounts = {};
+
+      Object.values(allVotes).forEach(vote => {
+        for (let product in vote) {
+          voteCounts[product] = (voteCounts[product] || 0) + 1;
+        }
+      });
+
+      renderVotes(voteCounts);
+    });
+  }
+
+  // Przyciski
+  document.getElementById('saveSelection').addEventListener('click', () => {
+    const votes = {};
+    document.querySelectorAll('.product-checkbox:checked').forEach(checkbox => {
+      const productDiv = checkbox.closest('.product');
+      const productName = productDiv.querySelector('strong')?.textContent.trim() || 'Nieznany produkt';
+      votes[productName] = true;
+    });
+
+    const newVoteRef = push(ref(db, 'votes'));
+    set(newVoteRef, votes)
+      .then(() => {
+        alert('Twój wybór został zapisany!');
+        document.querySelectorAll('.product-checkbox').forEach(cb => cb.checked = false);
+        updateSummary();
+      })
+      .catch((error) => {
+        console.error('Błąd podczas zapisu:', error);
+        alert('Wystąpił błąd podczas zapisu wyboru.');
+      });
+  });
+
+  document.getElementById('resetVotes').addEventListener('click', () => {
+    if (confirm('Czy na pewno chcesz zresetować wszystkie głosy?')) {
+      remove(ref(db, 'votes'))
+        .then(() => {
+          alert('Wszystkie głosy zostały usunięte.');
+          renderVotes({});
+          updateSummary();
+        })
+        .catch((error) => {
+          console.error('Błąd podczas resetowania:', error);
+          alert('Nie udało się zresetować głosów.');
+        });
+    }
+  });
+
+  // Ładowanie na start
+  window.addEventListener('load', () => {
+    attachCheckboxListeners();
+    loadVotes();
+    updateSummary();
+  });
+
+  // Elementy DOM
+  const totalPriceEl = document.getElementById('totalPrice');
+  const totalPricePerPersonEl = document.getElementById('totalPricePerPerson');
+  const votesList = document.getElementById('votesList');
+</script>
+
 
 </body>
 </html>
