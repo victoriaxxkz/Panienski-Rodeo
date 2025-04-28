@@ -1058,10 +1058,9 @@ document.getElementById('saveSelection').addEventListener('click', () => {
     const productName = productDiv.querySelector('strong')?.textContent.trim() || 'Nieznany produkt';
     selectedProducts.push(productName);
   });
-  }
 
   // Wyślij każdy produkt osobno do Google Sheets
-  selectedProducts.forEach(product => {
+ selectedProducts.forEach(product => {
     fetch(googleScriptURL, {
       method: 'POST',
       mode: 'no-cors',
@@ -1076,7 +1075,6 @@ document.getElementById('saveSelection').addEventListener('click', () => {
 
   document.querySelectorAll('.product-checkbox').forEach(cb => cb.checked = false);
   updateSummary();
-});
 
 const totalPriceEl = document.getElementById('totalPrice');
 const totalPricePerPersonEl = document.getElementById('totalPricePerPerson');
