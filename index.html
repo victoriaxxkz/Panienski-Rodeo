@@ -1059,6 +1059,11 @@ document.getElementById('saveSelection').addEventListener('click', () => {
     selectedProducts.push(productName);
   });
 
+  if (selectedProducts.length === 0) {
+    alert('Wybierz coś przed zapisaniem!');
+    return;
+  }
+
   // Wyślij każdy produkt osobno do arkusza
   selectedProducts.forEach(product => {
     fetch(googleScriptURL, {
@@ -1070,12 +1075,6 @@ document.getElementById('saveSelection').addEventListener('click', () => {
       body: JSON.stringify({ product: product })
     });
   });
-
-   if (selectedProducts.length === 0) {
-    alert('Wybierz coś przed zapisaniem!');
-    return;
-  }
-
 
   alert('Twój wybór został zapisany! 🎉');
   document.querySelectorAll('.product-checkbox').forEach(cb => cb.checked = false);
