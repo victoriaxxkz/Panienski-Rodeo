@@ -1163,33 +1163,6 @@ document.getElementById('saveSelection').addEventListener('click', () => {
   `;
   document.head.appendChild(style);
 
-  // Obsługa kliknięcia "Zapisz wybór"
-  document.getElementById('saveSelection').addEventListener('click', () => {
-    const votes = {};
-    document.querySelectorAll('.product-checkbox:checked').forEach(checkbox => {
-      const productDiv = checkbox.closest('.product');
-      const productName = productDiv.querySelector('strong')?.textContent.trim() || 'Nieznany produkt';
-      votes[productName] = true;
-    });
-
-    if (Object.keys(votes).length === 0) {
-      alert('Wybierz coś przed zapisaniem!');
-      return;
-    }
-
-    const newVoteRef = push(ref(db, 'votes'));
-    set(newVoteRef, votes)
-      .then(() => {
-        showCustomMessage('Twój wybór został zapisany! 🎉');
-        document.querySelectorAll('.product-checkbox').forEach(cb => cb.checked = false);
-        updateSummary();
-      })
-      .catch((error) => {
-        console.error('Błąd podczas zapisu:', error);
-        alert('Wystąpił błąd podczas zapisu wyboru.');
-      });
-  });
-
   // Obsługa kliknięcia "Resetuj głosy"
   document.getElementById('resetVotes').addEventListener('click', () => {
     if (confirm('Czy na pewno chcesz zresetować wszystkie głosy?')) {
