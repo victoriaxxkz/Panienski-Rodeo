@@ -245,10 +245,24 @@ h2, h3 {
     font-family: 'Comic Sans MS', cursive, sans-serif;
   }
 
+  /* Tytuły nadal Rye */
   h1, h2, h3, summary, .summary-box h3, #votesSummary {
     font-family: 'Rye', cursive;
   }
+
+  /* Tekst produktów i ceny na zwykły Comic Sans */
+  .product-details,
+  .product-info,
+  .product-price,
+  .product-link,
+  label.product,
+  .summary-box div,
+  #totalPrice,
+  #totalPricePerPerson {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+  }
 }
+
 
 
   .kasia-image img {
@@ -341,13 +355,7 @@ label.product input.product-checkbox {
   border-radius: 15px;
 }
 
-/* WERSJA NA TELEFONY */
-@media (max-width: 768px) {
-  .product-content {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
+
 
   .product img {
     max-width: 80px; /* Mniejsze zdjęcia na telefonie */
@@ -450,13 +458,17 @@ label.product input.product-checkbox {
       <input type="checkbox" class="product-checkbox" data-unit-price="26.77" data-person-price="4.46">
       <div class="product-content">
         <div class="product-info">
-          <strong>12 szt. Bandamy + okulary</strong>
+          <strong>6 szt. Bandamy + okulary</strong>
           <img src="https://img.kwcdn.com/product/fancy/bbdcd7be-bd9a-4d36-ab8f-6b2e60f2233d.jpg" alt="Bandamy + okulary">
         </div>
         <div class="product-details">
           <div>Cena jednostkowa: 26,77 PLN</div>
           <div>Cena na osobę: 4,46 PLN</div>
           <div>Link do aukcji: <u><a href="https://www.temu.com/pl/goods.html?_bg_fs=1&goods_id=601099805869498&_x_sessn_id=yihkifu66c&refer_page_name=wishlist&refer_page_id=16136_1745830742548_as78zaxax8&refer_page_sn=16136" target="_blank" onclick="event.stopPropagation();"> Link (Temu)</u></a></div>
+          <!-- UWAGA pod linkiem -->
+          <div class="product-warning">
+            <strong><u>WAŻNE: Trzeba dobrać kapelusz dla Panny Młodej!</u></strong>
+          </div>
         </div>
       </div>
     </label>
