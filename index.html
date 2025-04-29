@@ -239,17 +239,19 @@ h2, h3 {
       100% { transform: translateY(0); }
     }
 
-    @media (max-width: 768px) {
+@media (max-width: 768px) {
   body {
-    font-family: 'Comic Sans MS', cursive, sans-serif;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
   }
 
-  /* Tytuły pozostają ozdobne */
+  /* Tytuły (ozdobne wcześniej) → Times New Roman Bold */
   h1, h2, h3, summary, .summary-box h3, #votesSummary {
-    font-family: 'Rye', cursive;
+    font-family: 'Times New Roman', serif;
+    font-weight: bold;
   }
 
-  /* Tekst produktów ma być zwykły */
+  /* Tekst produktów → Arial Bold */
   .product-details,
   .product-info,
   .product-price,
@@ -258,13 +260,13 @@ h2, h3 {
   .summary-box div,
   #totalPrice,
   #totalPricePerPerson,
-  /* DODANE: wszystkie strong w produktach też na Comic Sans! */
   .product-info strong,
   .product-details strong {
-    font-family: 'Comic Sans MS', cursive, sans-serif;
-    font-weight: bold; /* możesz zostawić bold żeby było wyraźniej */
+    font-family: Arial, sans-serif;
+    font-weight: bold;
   }
 }
+
 
 
 
